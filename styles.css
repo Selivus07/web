@@ -36,6 +36,7 @@ main {
     padding: 20px;
 }
 
+/* Buttons */
 .btn {
     background-color: #ff6347;
     padding: 10px 20px;
@@ -50,24 +51,23 @@ main {
     background-color: #ff4500;
 }
 
-/* Decal List Styles */
+/* Decal Listing Grid */
 .decal-list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 20px;  /* Add space between rows and columns */
+    justify-content: space-between; /* Adjusted to evenly space decals */
+    gap: 20px; /* Add gap between items */
 }
 
-/* Each decal item */
 .decal-item {
     background-color: #1e1e1e;
     border-radius: 15px;
-    margin: 15px;
-    width: 23%;  /* 4 items per row, with 1% spacing for gaps */
+    width: 23%; /* Adjusted to fit 4 items per row */
     text-align: center;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
     transition: transform 0.3s;
+    margin-bottom: 20px; /* Add space between rows */
 }
 
 .decal-item:hover {
@@ -117,39 +117,4 @@ main {
 .decal-detail p {
     font-size: 1.2em;
     margin-top: 10px;
-}
-
-/* Adjusted Decal List for Row Organization */
-.decal-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 20px;
-}
-
-.decal-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    width: 100%;  /* Ensure the row takes up the full width */
-}
-
-.decal-item {
-    width: 23%;  /* Adjust width to have 4 items per row */
-    text-align: center;
-}
-
-.decal-item img {
-    width: 100%;
-    height: auto;
-}
-
-.decal-item p {
-    font-size: 14px;
-    margin: 10px 0;
-}
-
-.decal-item a {
-    text-decoration: none;
-    color: #007bff;
 }

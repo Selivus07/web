@@ -5,6 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Decals - Roblox Marketplace</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Add some basic styling for rows */
+        .decal-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px; /* Adjust the space between decals */
+        }
+
+        .decal-item {
+            flex: 1 1 23%; /* Ensures each decal item takes up about 23% of the row */
+            text-align: center;
+        }
+
+        .decal-item img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -46,26 +64,26 @@
             },
             {
                 id: 5,
-                name: "79703286724534",
-                imageUrl: "https://tr.rbxcdn.com/180DAY-fa60cd7d7eccb1723275f33a6401f58e/420/420/Image/Webp/noFilter",
+                name: "54325634867289",
+                imageUrl: "https://tr.rbxcdn.com/180DAY-abcde12345a67890fghijklmno12345/420/420/Image/Webp/noFilter",
                 detailPage: "decal.html?id=5"
             },
+            {
+                id: 6,
+                name: "76894521378903",
+                imageUrl: "https://tr.rbxcdn.com/180DAY-pqrstuvwxyz987654321/420/420/Image/Webp/noFilter",
+                detailPage: "decal.html?id=6"
+            }
             // Add more decals as needed
         ];
 
         // Function to generate the HTML for each decal and inject it into the page
         function loadDecals() {
             const decalList = document.getElementById("decalList");
-            let row;
-            decals.forEach((decal, index) => {
-                // Create a new row every 4 decals
-                if (index % 4 === 0) {
-                    row = document.createElement("div");
-                    row.classList.add("decal-row");
-                    decalList.appendChild(row);
-                }
+            let row = document.createElement('div');
+            row.classList.add('decal-row'); // Start a new row
 
-                // Create a decal item and append it to the row
+            decals.forEach((decal, index) => {
                 const decalItem = document.createElement("div");
                 decalItem.classList.add("decal-item");
 
@@ -74,8 +92,21 @@
                     <p>${decal.name}</p>
                     <a href="${decal.detailPage}">View Details</a>
                 `;
+
                 row.appendChild(decalItem);
+
+                // After every 4 decals, start a new row
+                if ((index + 1) % 4 === 0) {
+                    decalList.appendChild(row);
+                    row = document.createElement('div');
+                    row.classList.add('decal-row'); // Start a new row
+                }
             });
+
+            // Append the last row if it has decals
+            if (row.children.length > 0) {
+                decalList.appendChild(row);
+            }
         }
 
         // Call the function to load the decals on page load
