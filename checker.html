@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>s3livus Asset Checker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>s3livus Asset Checker</h1>
+    </header>
+    <main>
+        <div class="checker-container">
+            <input type="text" id="decalId" placeholder="Enter Roblox Decal ID">
+            <button onclick="checkAsset()">Check</button>
+            <div class="preview-container">
+                <div class="preview white-bg">
+                    <h3>White Background</h3>
+                    <img id="whitePreview" src="" alt="Decal Preview">
+                </div>
+                <div class="preview black-bg">
+                    <h3>Black Background</h3>
+                    <img id="blackPreview" src="" alt="Decal Preview">
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        function checkAsset() {
+            let decalId = document.getElementById('decalId').value;
+            let imageUrl = `https://www.roblox.com/asset-thumbnail/image?assetId=${decalId}&width=420&height=420&format=png`;
+            document.getElementById('whitePreview').src = imageUrl;
+            document.getElementById('blackPreview').src = imageUrl;
+        }
+    </script>
+</body>
+</html>
