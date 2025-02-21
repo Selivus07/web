@@ -14,18 +14,45 @@
         </nav>
     </header>
     <main>
-        <div class="decal-list">
-            <div class="decal-item">
-                <img src="decal1.png" alt="Decal 1">
-                <p>Cool Decal #1</p>
-                <a href="decal.html?id=1">View Details</a>
-            </div>
-            <div class="decal-item">
-                <img src="decal2.png" alt="Decal 2">
-                <p>Cool Decal #2</p>
-                <a href="decal.html?id=2">View Details</a>
-            </div>
-        </div>
+        <div class="decal-list" id="decalList"></div> <!-- This is where the decals will be dynamically added -->
     </main>
+
+    <script>
+        // Array of decals with their image URLs and IDs
+        const decals = [
+            {
+                id: 1,
+                name: "Cool Decal #1",
+                imageUrl: "https://www.robloxseller.com/assets/img/some-image-1.jpg",
+                detailPage: "decal.html?id=1"
+            },
+            {
+                id: 2,
+                name: "Cool Decal #2",
+                imageUrl: "https://www.robloxseller.com/assets/img/some-image-2.jpg",
+                detailPage: "decal.html?id=2"
+            },
+            // Add more decals as needed
+        ];
+
+        // Function to generate the HTML for each decal and inject it into the page
+        function loadDecals() {
+            const decalList = document.getElementById("decalList");
+            decals.forEach(decal => {
+                const decalItem = document.createElement("div");
+                decalItem.classList.add("decal-item");
+
+                decalItem.innerHTML = `
+                    <img src="${decal.imageUrl}" alt="${decal.name}">
+                    <p>${decal.name}</p>
+                    <a href="${decal.detailPage}">View Details</a>
+                `;
+                decalList.appendChild(decalItem);
+            });
+        }
+
+        // Call the function to load the decals on page load
+        window.onload = loadDecals;
+    </script>
 </body>
 </html>
