@@ -50,7 +50,16 @@
         // Function to generate the HTML for each decal and inject it into the page
         function loadDecals() {
             const decalList = document.getElementById("decalList");
-            decals.forEach(decal => {
+            let row;
+            decals.forEach((decal, index) => {
+                // Create a new row every 4 decals
+                if (index % 4 === 0) {
+                    row = document.createElement("div");
+                    row.classList.add("decal-row");
+                    decalList.appendChild(row);
+                }
+
+                // Create a decal item and append it to the row
                 const decalItem = document.createElement("div");
                 decalItem.classList.add("decal-item");
 
@@ -59,7 +68,7 @@
                     <p>${decal.name}</p>
                     <a href="${decal.detailPage}">View Details</a>
                 `;
-                decalList.appendChild(decalItem);
+                row.appendChild(decalItem);
             });
         }
 

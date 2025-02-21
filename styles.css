@@ -115,3 +115,37 @@ main {
     font-size: 1.2em;
     margin-top: 10px;
 }
+
+/* Style for the decal list */
+.decal-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.decal-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;  /* Allows wrapping to the next line */
+}
+
+.decal-item {
+    width: 23%;  /* Adjust this value to control the size of the decals */
+    text-align: center;
+}
+
+.decal-item img {
+    width: 100%;
+    height: auto;
+}
+
+.decal-item p {
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+.decal-item a {
+    text-decoration: none;
+    color: #007bff;
+}
+
