@@ -15,12 +15,58 @@
         </nav>
     </header>
     <main>
-        <div class="decal-detail">
-            <img src="https://tr.rbxcdn.com/180DAY-04d025899c940fcfda506cf04d278c98/420/420/Image/Webp/noFilter" alt="Decal Image">
-            <h2>big titty honka zonka</h2>
-            <p>biiig honkas.</p>
-            <p>ID: 125248212451626</p>
-        </div>
+        <div class="decal-detail" id="decalDetail"></div>
     </main>
+
+    <script>
+        // Array of decals with their image URLs and IDs
+        const decals = [
+            {
+                id: 1,
+                name: "125248212451626",
+                imageUrl: "https://tr.rbxcdn.com/180DAY-04d025899c940fcfda506cf04d278c98/420/420/Image/Webp/noFilter",
+                description: "Description for Decal 1."
+            },
+            {
+                id: 2,
+                name: "133909565747050",
+                imageUrl: "https://tr.rbxcdn.com/180DAY-89053bc28913d36687dac413434997b7/420/420/Image/Webp/noFilter",
+                description: "Description for Decal 2."
+            },
+            {
+                id: 3,
+                name: "112089287546088",
+                imageUrl: "https://tr.rbxcdn.com/180DAY-6a8e1f58ca66e77cf73b49d389be2ef7/420/420/Image/Webp/noFilter",
+                description: "Description for Decal 3."
+            },
+            // Add more decals as needed
+        ];
+
+        // Get the id from the URL query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const decalId = parseInt(urlParams.get('id')); // Get the 'id' parameter
+
+        // Function to load the decal details based on the id
+        function loadDecalDetails() {
+            const decalDetail = document.getElementById("decalDetail");
+
+            // Find the decal by the id
+            const decal = decals.find(d => d.id === decalId);
+            if (decal) {
+                // If decal is found, display its details
+                decalDetail.innerHTML = `
+                    <img src="${decal.imageUrl}" alt="${decal.name}">
+                    <h2>${decal.name}</h2>
+                    <p>${decal.description}</p>
+                `;
+            } else {
+                // If no decal found, show an error message
+                decalDetail.innerHTML = `<p>Decal not found.</p>`;
+            }
+        }
+
+        // Call the function to load the decal details on page load
+        window.onload = loadDecalDetails;
+    </script>
 </body>
 </html>
