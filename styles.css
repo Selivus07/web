@@ -50,17 +50,20 @@ main {
     background-color: #ff4500;
 }
 
+/* Decal List Styles */
 .decal-list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
+    gap: 20px;  /* Add space between rows and columns */
 }
 
+/* Each decal item */
 .decal-item {
     background-color: #1e1e1e;
     border-radius: 15px;
     margin: 15px;
-    width: 200px;
+    width: 23%;  /* 4 items per row, with 1% spacing for gaps */
     text-align: center;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
@@ -116,21 +119,23 @@ main {
     margin-top: 10px;
 }
 
-/* Style for the decal list */
+/* Adjusted Decal List for Row Organization */
 .decal-list {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
     gap: 20px;
 }
 
 .decal-row {
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
-    flex-wrap: wrap;  /* Allows wrapping to the next line */
+    width: 100%;  /* Ensure the row takes up the full width */
 }
 
 .decal-item {
-    width: 70%;  /* Adjust this value to control the size of the decals */
+    width: 23%;  /* Adjust width to have 4 items per row */
     text-align: center;
 }
 
@@ -148,4 +153,3 @@ main {
     text-decoration: none;
     color: #007bff;
 }
-
