@@ -5,24 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Decals - Roblox Marketplace</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Add some basic styling for rows */
-        .decal-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px; /* Adjust the space between decals */
-        }
-
-        .decal-item {
-            flex: 1 1 5%; /* Ensures each decal item takes up about 23% of the row */
-            text-align: center;
-        }
-
-        .decal-item img {
-            max-width: 100%;
-            height: auto;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -38,7 +20,7 @@
     <script>
         // Array of decals with their image URLs and IDs
         const decals = [
-            {
+        {
                 id: 1,
                 name: "125248212451626",
                 imageUrl: "https://tr.rbxcdn.com/180DAY-04d025899c940fcfda506cf04d278c98/420/420/Image/Webp/noFilter",
@@ -80,10 +62,7 @@
         // Function to generate the HTML for each decal and inject it into the page
         function loadDecals() {
             const decalList = document.getElementById("decalList");
-            let row = document.createElement('div');
-            row.classList.add('decal-row'); // Start a new row
-
-            decals.forEach((decal, index) => {
+            decals.forEach(decal => {
                 const decalItem = document.createElement("div");
                 decalItem.classList.add("decal-item");
 
@@ -92,21 +71,8 @@
                     <p>${decal.name}</p>
                     <a href="${decal.detailPage}">View Details</a>
                 `;
-
-                row.appendChild(decalItem);
-
-                // After every 4 decals, start a new row
-                if ((index + 1) % 4 === 0) {
-                    decalList.appendChild(row);
-                    row = document.createElement('div');
-                    row.classList.add('decal-row'); // Start a new row
-                }
+                decalList.appendChild(decalItem);
             });
-
-            // Append the last row if it has decals
-            if (row.children.length > 0) {
-                decalList.appendChild(row);
-            }
         }
 
         // Call the function to load the decals on page load
