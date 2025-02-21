@@ -1,0 +1,117 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+    color: #f0f0f0;
+}
+
+header {
+    background-color: #1e1e1e;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 3px solid #333;
+    border-radius: 10px 10px 0 0;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+nav a {
+    color: #ff6347;
+    font-size: 1.2em;
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Main Content */
+main {
+    padding: 20px;
+}
+
+.btn {
+    background-color: #ff6347;
+    padding: 10px 20px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 1.2em;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #ff4500;
+}
+
+.decal-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.decal-item {
+    background-color: #1e1e1e;
+    border-radius: 15px;
+    margin: 15px;
+    width: 200px;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s;
+}
+
+.decal-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8);
+}
+
+.decal-item img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.decal-item p {
+    font-size: 1.1em;
+    margin-top: 10px;
+}
+
+.decal-item a {
+    color: #ff6347;
+    text-decoration: none;
+}
+
+.decal-item a:hover {
+    text-decoration: underline;
+}
+
+/* Decal Detail Page */
+.decal-detail {
+    background-color: #1e1e1e;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+    text-align: center;
+    margin-top: 20px;
+}
+
+.decal-detail img {
+    max-width: 80%;
+    border-radius: 10px;
+}
+
+.decal-detail h2 {
+    margin-top: 20px;
+    font-size: 2em;
+}
+
+.decal-detail p {
+    font-size: 1.2em;
+    margin-top: 10px;
+}
