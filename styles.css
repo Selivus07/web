@@ -130,7 +130,7 @@ main {
 }
 
 .decal-item {
-    width: 23%;  /* Adjust this value to control the size of the decals */
+    width: 70%;  /* Adjust this value to control the size of the decals */
     text-align: center;
 }
 
