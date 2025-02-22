@@ -5,38 +5,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>s3livus Asset Checker</title>
     <style>
+        /* Global Styles */
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #f0f0f0;
             text-align: center;
+        }
+
+        header {
+            background-color: #1e1e1e;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 3px solid #333;
+            border-radius: 10px 10px 0 0;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        .checker-container {
+            max-width: 600px;
+            margin: auto;
             padding: 20px;
         }
-        .checker-container {
-            max-width: 400px;
-            margin: auto;
-        }
+
         input {
             width: 80%;
             padding: 10px;
             margin-bottom: 10px;
+            background-color: #1e1e1e;
+            color: #f0f0f0;
+            border: 1px solid #333;
+            border-radius: 10px;
         }
+
         button {
             padding: 10px;
             cursor: pointer;
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            transition: background-color 0.3s;
         }
+
+        button:hover {
+            background-color: #ff4500;
+        }
+
         .preview-container {
             display: flex;
             justify-content: center;
             gap: 20px;
             margin-top: 20px;
         }
+
+        .preview {
+            background-color: #1e1e1e;
+            border-radius: 15px;
+            text-align: center;
+            padding: 20px;
+            width: 512px;
+            height: 512px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         .preview img {
-            width: 150px;
-            height: 150px;
+            width: 512px;
+            height: 512px;
+            border-radius: 10px;
             object-fit: contain;
         }
+
+        .preview.white-bg {
+            background-image: url('https://cdn.discordapp.com/attachments/1307946360988766208/1342646552841162752/white.png?ex=67ba648b&is=67b9130b&hm=ce6489476af6069c07c915040f0afeab661f1eb78020afe97ecaaa2d6b97fbb0&');
+            background-size: cover;
+            background-position: center;
+            width: 512px;
+            height: 512px;
+        }
+
+        .preview.black-bg {
+            background-image: url('https://media.discordapp.net/attachments/1307946360988766208/1342646553126637729/black.png?ex=67ba648b&is=67b9130b&hm=18679e68a4ee8a193d3c56d6791cfdf361acbafd80de261dd3a35fbd81504b5e&=&format=webp&quality=lossless&width=676&height=676');
+            background-size: cover;
+            background-position: center;
+            width: 512px;
+            height: 512px;
+        }
+
+        .preview h3 {
+            font-size: 1.2em;
+            color: #ff6347;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
         .error {
             color: red;
             margin-top: 10px;
+            font-size: 1.1em;
         }
     </style>
 </head>
@@ -51,11 +130,9 @@
             <p id="errorMessage" class="error"></p>
             <div class="preview-container">
                 <div class="preview white-bg">
-                    <h3>White Background</h3>
                     <img id="whitePreview" src="" alt="Decal Preview">
                 </div>
                 <div class="preview black-bg">
-                    <h3>Black Background</h3>
                     <img id="blackPreview" src="" alt="Decal Preview">
                 </div>
             </div>
@@ -63,45 +140,26 @@
     </main>
     <script>
         async function checkAsset() {
-            let decalId = document.getElementById('decalId').value.trim();
-            let errorMessage = document.getElementById("errorMessage");
-            let whitePreview = document.getElementById("whitePreview");
-            let blackPreview = document.getElementById("blackPreview");
-
-            errorMessage.textContent = "";
-            whitePreview.src = "";
-            blackPreview.src = "";
-
-            if (!decalId || isNaN(decalId)) {
-                errorMessage.textContent = "Please enter a valid numeric decal ID.";
-                return;
-            }
-
-            let thumbnailUrl = `https://thumbnails.roblox.com/v1/assets?assetIds=${decalId}&size=420x420&format=Png&isCircular=false`;
+            let decalId = document.getElementById('decalId').value;
+            let proxyUrl = `http://localhost:3052/proxy?id=${decalId}`; // Updated to local server
 
             try {
-                let response = await fetch(thumbnailUrl);
+                let response = await fetch(proxyUrl);
                 let data = await response.json();
 
                 if (data.data && data.data.length > 0 && data.data[0].imageUrl) {
                     let imageUrl = data.data[0].imageUrl;
-
-                    // Check if the image actually exists
-                    let testImg = new Image();
-                    testImg.src = imageUrl;
-                    testImg.onload = () => {
-                        whitePreview.src = imageUrl;
-                        blackPreview.src = imageUrl;
-                    };
-                    testImg.onerror = () => {
-                        errorMessage.textContent = "This decal does not exist or is not accessible.";
-                    };
+                    document.getElementById('whitePreview').src = imageUrl;
+                    document.getElementById('blackPreview').src = imageUrl;
+                    document.getElementById('errorMessage').textContent = '';
                 } else {
-                    errorMessage.textContent = "No valid decal found for this ID.";
+                    document.getElementById('errorMessage').textContent = "No image found for this decal ID.";
+                    document.getElementById('whitePreview').src = '';
+                    document.getElementById('blackPreview').src = '';
                 }
-            } catch (error) {   
+            } catch (error) {
                 console.error('Error fetching asset:', error);
-                errorMessage.textContent = "There was an error fetching the asset. Please try again.";
+                document.getElementById('errorMessage').textContent = "There was an error fetching the asset. Please try again.";
             }
         }
     </script>
